@@ -10,9 +10,10 @@ function Formulario() {
     sintomas: ''
   });
 
+  const [error, actualizarError] = useState(false)
+
   //funcion que se ejecuta cada ue cambia un input
   const actualizarState =  (e) => {
-    console.log('escribiendo...');
     actualizarCita({
       ...cita,
       [e.target.name]: e.target.value
@@ -27,7 +28,12 @@ function Formulario() {
   const submitCita = (e) => {
     e.preventDefault();
 
-    //validar
+    //validar sin espacios en blanco
+    if(mascota.trim() === '' || propietario.trim() === '' || fecha.trim() === '' || hora.trim() === '' || sintomas.trim() === ''){
+      actualizarError(true);
+      return;
+    }
+    console.log('agregando...')
 
     //Asignar un id
 
@@ -39,6 +45,8 @@ function Formulario() {
   return(
     <Fragment>
       <h2>Crear Citas</h2>
+
+      {error ? <p className="alerta-error">Todos los campos son obligatorios</p> : null}
       <form
         onSubmit={submitCita}
       >
