@@ -1,4 +1,5 @@
 import React, {Fragment, useState} from 'react';
+// import uuid from 'uuid/v4';
 
 function Formulario() {
 
@@ -7,7 +8,7 @@ function Formulario() {
     propietario: '',
     fecha: '',
     hora: '',
-    sintomas: ''
+    sintomas: '',
   });
 
   const [error, actualizarError] = useState(false)
@@ -23,8 +24,11 @@ function Formulario() {
   //Extraer lo valores
   const{mascota, propietario, fecha, hora, sintomas} = cita;
 
-  //cuando se presiona el boton enviar
+  const numAleatorio = () => {
+    return Math.floor(Math.random() * (10000 - 0)) + 0;
+  }
 
+  //cuando se presiona el boton enviar
   const submitCita = (e) => {
     e.preventDefault();
 
@@ -33,9 +37,13 @@ function Formulario() {
       actualizarError(true);
       return;
     }
-    console.log('agregando...')
+
+    actualizarError(false);
 
     //Asignar un id
+    cita.id = numAleatorio();
+    console.log(cita);
+
 
     //Crear la cita
 
