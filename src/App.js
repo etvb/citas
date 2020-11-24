@@ -22,6 +22,8 @@ function App() {
     const nuevasCitas = citas.filter(cita => cita.id !== id);
     guardarCitas(nuevasCitas);
   }
+
+  const titulo = citas.length ===  0 ? 'No hay citas' : 'Administrar las citas'
   return (
 
     <Fragment>
@@ -35,7 +37,7 @@ function App() {
             />
           </div>
           <div className="one-half column">
-            <h2>Administra tus citas</h2>
+  <h2>{titulo}</h2>
             {citas.map(cita => (
               <Cita
                 key={cita.id}
