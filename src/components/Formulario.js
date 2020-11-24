@@ -1,7 +1,7 @@
 import React, {Fragment, useState} from 'react';
 // import uuid from 'uuid/v4';
 
-function Formulario() {
+function Formulario({crearCita}) {
 
   const [cita, actualizarCita]=useState({
     mascota: '',
@@ -42,12 +42,19 @@ function Formulario() {
 
     //Asignar un id
     cita.id = numAleatorio();
-    console.log(cita);
 
 
     //Crear la cita
+    crearCita(cita);
 
     //Reiniciar el formulario
+    actualizarCita({
+      mascota: '',
+      propietario: '',
+      fecha: '',
+      hora: '',
+      sintomas: '',
+    })
   }
 
   return(
@@ -65,7 +72,7 @@ function Formulario() {
             className="u-full-width"
             placeholder="Nombre Mascota"
             onChange={actualizarState}
-            vaue={mascota}
+            value={mascota}
           />
         </label>
         <label>Nombre del Dueño
